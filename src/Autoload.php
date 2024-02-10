@@ -15,4 +15,9 @@ Plugin::uses(Example::class);
 function example(string $argument)
 {
     return test()->example(...func_get_args()); // @phpstan-ignore-line
+
 }
+
+expect()->extend('toBeSaloonConnector', function () {
+    return $this->toExtend('Saloon\Http\Connector');
+});
