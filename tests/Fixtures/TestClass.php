@@ -1,8 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Fixtures;
 
-class TestClass
-{
+use Saloon\Http\Connector;
 
+class TestClass extends Connector
+{
+    public function resolveBaseUrl(): string
+    {
+        // TODO: Implement resolveBaseUrl() method.
+    }
 }

@@ -11,6 +11,6 @@ it('may be accessed as function', function () {
 });
 
 it('test', function () {
-    expect('Pest\PluginName\App\Http\Integrations\Stripe\AnotherTestConnector')
-        ->not->toBeSaloonConnector();
+    expect('Tests\Fixtures\TestClass')
+        ->toBeSaloonConnector();
 });

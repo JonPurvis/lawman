@@ -19,7 +19,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Pest\\PluginName\\": "src/"
+            "Pest\\PluginName\\": "src/",
+            "Tests\\Fixtures\\": "tests/Fixtures"
         },
         "files": [
             "src/Autoload.php"
