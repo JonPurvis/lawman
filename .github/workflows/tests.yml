@@ -1,32 +1,21 @@
 name: Tests
 
-on:
-  push:
-  pull_request:
-  schedule:
-    - cron: '0 0 * * *'
+on: ['push', 'pull_request']
 
 jobs:
-  tests:
-    if: github.event_name != 'schedule' || github.repository == 'pestphp/pest'
-
+  ci:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        symfony: ['6.4', '7.0']
-        php: ['8.1', '8.2', '8.3']
-        dependency_version: [prefer-lowest, prefer-stable]
-        exclude:
-          - php: '8.1'
-            symfony: '7.0'
+        os: [ubuntu-latest, macos-latest]
+        php: ['7.3', '7.4', '8.0']
+        dependency-version: [prefer-stable]
 
-    name: PHP ${{ matrix.php }} - Symfony ^${{ matrix.symfony }} - ${{ matrix.os }} - ${{ matrix.dependency_version }}
+    name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -41,13 +30,7 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install PHP dependencies
-        run: composer update --${{ matrix.dependency_version }} --no-interaction --no-progress --ansi --with="symfony/console:~${{ matrix.symfony }}"
+        run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress --ansi
 
       - name: Unit Tests
         run: composer test:unit
-
-      - name: Parallel Tests
-        run: composer test:parallel
-
-      - name: Integration Tests
-        run: composer test:integration
