@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\Fixtures;
+namespace Tests\Fixtures\Arch\ToBeSaloonConnector;
 
 use Saloon\Http\Connector;
 
-class TestClass extends Connector
+class IsConnector extends Connector
 {
     public function resolveBaseUrl(): string
     {
-        // TODO: Implement resolveBaseUrl() method.
+        return '';
     }
 }
