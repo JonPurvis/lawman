@@ -1,6 +1,6 @@
 {
-    "name": "pestphp/pest-plugin-template",
-    "description": "My awesome plugin",
+    "name": "jonpurvis/pest-plugin-saloon",
+    "description": "Make testing your SaloonPHP integrations a breeze with Pest.",
     "keywords": [
         "php",
         "framework",
@@ -8,7 +8,8 @@
         "unit",
         "test",
         "testing",
-        "plugin"
+        "plugin",
+        "saloon"
     ],
     "license": "MIT",
     "require": {
@@ -19,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Pest\\PluginName\\": "src/",
+            "JonPurvis\\PestPluginSaloon\\": "src/",
             "Tests\\Fixtures\\Arch\\": "tests/Fixtures/Arch"
         },
         "files": [
