@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JonPurvis\PestPluginSaloon;
+namespace JonPurvis\Lawman;
 
 require_once __DIR__.'/Expectations/Authentication.php';
 require_once __DIR__.'/Expectations/Cache.php';

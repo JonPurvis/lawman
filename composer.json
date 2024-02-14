@@ -1,5 +1,5 @@
 {
-    "name": "jonpurvis/pest-plugin-saloon",
+    "name": "jonpurvis/lawman",
     "description": "Make testing your SaloonPHP integrations a breeze with Pest.",
     "keywords": [
         "php",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "JonPurvis\\PestPluginSaloon\\": "src/",
+            "JonPurvis\\Lawman\\": "src/",
             "Tests\\Fixtures\\Arch\\": "tests/Fixtures/Arch"
         },
         "files": [
