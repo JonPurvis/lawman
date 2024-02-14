@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Fixtures\Arch\ToBeSaloonConnector;
 
-class IsNotConnector
+use Saloon\Http\Connector;
+
+class ToBeSaloonConnector extends Connector
 {
     public function resolveBaseUrl(): string
     {
