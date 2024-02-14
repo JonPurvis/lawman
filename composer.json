@@ -1,6 +1,6 @@
 {
     "name": "jonpurvis/lawman",
-    "description": "Make testing your SaloonPHP integrations a breeze with Pest.",
+    "description": "A PestPHP Plugin to help with architecture testing SaloonPHP integrations",
     "keywords": [
         "php",
         "framework",
