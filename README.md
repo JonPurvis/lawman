@@ -108,5 +108,7 @@ make sure you add a new Fixture and test for your Expectation(s).
 
 ## Useful Links
 
+- [Lawman Documentation](https://docs.saloon.dev/installable-plugins/lawman)
 - [SaloonPHP](https://docs.saloon.dev/)
 - [PestPHP](https://pestphp.com/)
+  
