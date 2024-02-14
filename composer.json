@@ -15,8 +15,7 @@
     "require": {
         "php": "^8.1",
         "pestphp/pest": "^2.5",
-        "pestphp/pest-plugin": "^2.0.1",
-        "saloonphp/saloon": "^3.0"
+        "pestphp/pest-plugin": "^2.0.1"
     },
     "autoload": {
         "psr-4": {
@@ -28,7 +27,11 @@
         ]
     },
     "require-dev": {
-        "pestphp/pest-dev-tools": "^2.9"
+        "pestphp/pest-dev-tools": "^2.9",
+        "saloonphp/cache-plugin": "^3.0",
+        "saloonphp/pagination-plugin": "^2.0",
+        "saloonphp/rate-limit-plugin": "^2.0",
+        "saloonphp/saloon": "^3.6"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
