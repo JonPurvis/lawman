@@ -1,15 +1,22 @@
 <img src="art/banner.png">
 
-# Lawman - Your Architectural Enforcer for Saloon API Integrations
+# Lawman - Your Architectural Enforcer for SaloonPHP
 
----
+A PestPHP Plugin for SaloonPHP that helps you enforce architectural rules with your API integrations. 
 
-A PestPHP Plugin for SaloonPHP that helps you enforce architectural rules with your API integrations.
-    
+[![Static Analysis](https://github.com/JonPurvis/pest-plugin-saloon/actions/workflows/static.yml/badge.svg)](https://github.com/JonPurvis/pest-plugin-saloon/actions/workflows/static.yml)
+[![Tests](https://github.com/JonPurvis/pest-plugin-saloon/actions/workflows/tests.yml/badge.svg)](https://github.com/JonPurvis/pest-plugin-saloon/actions/workflows/tests.yml)
+
 ## Introduction
 Lawman is a PestPHP Plugin for SaloonPHP which allows you to easily write architecture tests for your API integrations
 with a focus on them being easy to write and easy to read. After all, if SaloonPHP makes our 
 API integrations beautiful, the tests for them should be beautiful too, right?
+
+Lawman makes testing your SaloonPHP API integrations, from an architecture point of view, much
+easier to do. Allowing you to see, at a glance, what a test is actually doing. Lawman is a plugin for
+PestPHP meaning you can use Lawman Expectations and PestPHP Expectations together, just chain whatever
+you need for your tests!
+
 
 ## Examples
 
@@ -41,7 +48,7 @@ Next up, let's take a Request test that we have:
 
 ```php
 test('request')
-    ->expect('App\Http\Integrations\Intranet\Requests\Request')
+    ->expect('App\Http\Integrations\Integration\Requests\Request')
     ->toExtend('\Saloon\Http\Request')
     ->toImplement('Saloon\Contracts\Body\HasBody')
     ->toUse('Saloon\Traits\Body\HasFormBody')
@@ -52,7 +59,7 @@ Lawman makes this test much nicer to read:
 
 ```php
 test('request')
-    ->expect('App\Http\Integrations\Intranet\Requests\Request')
+    ->expect('App\Http\Integrations\Integration\Requests\Request')
     ->toBeSaloonRequest()
     ->toSendPostRequest()
     ->toHaveFormBody()
@@ -74,7 +81,7 @@ Lawman also has Expectations for the Pagination, Cache and Rate Limit Plugins:
 
 ```php
 test('request')
-    ->expect('App\Http\Integrations\Intranet\Requests\Request')
+    ->expect('App\Http\Integrations\Integration\Requests\Request')
     ->toBeSaloonRequest()
     ->toSendPostRequest()
     ->toUsePagedPagination()
@@ -94,7 +101,12 @@ test('connector')
     ->toUseExponentialBackoff()
 ```
 
-Lawman makes testing your SaloonPHP API integrations, from an architecture point of view, much
-easier to do. Allowing you to see, at a glance, what a test is actually doing. Lawman is a plugin for
-PestPHP meaning you can use Lawman Expectations and PestPHP Expectations together, just chain whatever 
-you need for your tests!
+## Contributing
+Contributions to the package are more than welcome so if you think of an Expectation you'd like to
+see, feel free to submit a Pull Request or Open an Issue. If you do submit a Pull Request, please
+make sure you add a new Fixture and test for your Expectation(s).
+
+## Useful Links
+
+- [SaloonPHP](https://docs.saloon.dev/)
+- [PestPHP](https://pestphp.com/)
