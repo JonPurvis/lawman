@@ -6,6 +6,15 @@ use Pest\Arch\Contracts\ArchExpectation;
 use Pest\Expectation;
 use Saloon\Enums\Method;
 
+function getRequestType(string $class): string
+{
+    $class = new ReflectionClass($class); // @phpstan-ignore-line
+    $newInstance = $class->newInstanceWithoutConstructor();
+    $methodProperty = $class->getProperty('method');
+
+    return $methodProperty->getValue($newInstance)->name; // @phpstan-ignore-line
+}
+
 expect()->extend(
     'toBeSaloonRequest',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
@@ -21,81 +30,63 @@ expect()->extend(
 expect()->extend(
     'toSendGetRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::GET->name)
 );
 
 expect()->extend(
     'toSendPostRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::POST->name)
 );
 
 expect()->extend(
     'toSendHeadRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::HEAD->name)
 );
 
 expect()->extend(
     'toSendPutRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::PUT->name)
 );
 
 expect()->extend(
     'toSendPatchRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::PATCH->name)
 );
 
 expect()->extend(
     'toSendDeleteRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::DELETE->name)
 );
 
 expect()->extend(
     'toSendOptionsRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::OPTIONS->name)
 );
 
 expect()->extend(
     'toSendConnectRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::CONNECT->name)
 );
 
 expect()->extend(
     'toSendTraceRequest',
     fn (): Expectation => // @phpstan-ignore-next-line
-    expect((new ReflectionClass($this->value))
-        ->getProperty('method')
-        ->getValue(new $this->value)->name) // @phpstan-ignore-line
+    expect(getRequestType($this->value))
         ->toEqual(Method::TRACE->name)
 );
 
