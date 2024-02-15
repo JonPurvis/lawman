@@ -9,6 +9,11 @@ use Saloon\Http\Request;
 
 class PostRequest extends Request
 {
+    public function __construct(
+        protected string $test,
+    ) {
+    }
+
     /**
      * Define the HTTP method
      */
