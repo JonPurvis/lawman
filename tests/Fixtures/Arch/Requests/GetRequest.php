@@ -11,8 +11,7 @@ class GetRequest extends Request
 {
     public function __construct(
         protected string $test,
-    ) {
-    }
+    ) {}
 
     /**
      * Define the HTTP method

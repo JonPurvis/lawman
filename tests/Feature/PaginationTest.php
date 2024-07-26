@@ -21,3 +21,8 @@ it('checks that a class uses custom pagination', function () {
     expect('Tests\Fixtures\Arch\ToUseCustomPagination\ToUseCustomPagination')
         ->toUseCustomPagination();
 });
+
+it('checks that a class uses request pagination', function () {
+    expect('Tests\Fixtures\Arch\ToUseRequestPagination\ToUseRequestPagination')
+        ->toUseRequestPagination();
+});
