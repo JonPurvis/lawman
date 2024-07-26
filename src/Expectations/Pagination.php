@@ -43,3 +43,13 @@ expect()->extend(
             ->getReturnType()->getName())
         ->toEqual('Saloon\PaginationPlugin\Paginator')
 );
+
+expect()->extend(
+    'toUseRequestPagination',
+    fn (): Expectation => // @phpstan-ignore-next-line
+    $this->toImplement('Saloon\PaginationPlugin\Contracts\HasRequestPagination')
+        ->and((new ReflectionClass($this->value))   // @phpstan-ignore-line
+            ->getMethod('paginate')
+            ->getReturnType()->getName())
+        ->toEqual('Saloon\PaginationPlugin\Paginator')
+);
