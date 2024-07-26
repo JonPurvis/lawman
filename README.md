@@ -4,8 +4,8 @@
 
 A PestPHP Plugin for SaloonPHP that helps you enforce architectural rules with your API integrations. 
 
-[![Static Analysis](https://github.com/JonPurvis/lawman/actions/workflows/static.yml/badge.svg)](https://github.com/JonPurvis/pest-plugin-saloon/actions/workflows/static.yml)
-[![Tests](https://github.com/JonPurvis/pest-plugin-saloon/actions/workflows/tests.yml/badge.svg)](https://github.com/JonPurvis/lawman/actions/workflows/tests.yml)
+[![Static Analysis](https://github.com/JonPurvis/lawman/actions/workflows/static.yml/badge.svg)](https://github.com/JonPurvis/lawman/actions/workflows/static.yml)
+[![Tests](https://github.com/JonPurvis/lawman/actions/workflows/tests.yml/badge.svg)](https://github.com/JonPurvis/lawman/actions/workflows/tests.yml)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jonpurvis/lawman)
 ![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/jonpurvis/lawman/php)
 ![GitHub issues](https://img.shields.io/github/issues/jonpurvis/lawman)
