@@ -27,3 +27,9 @@ expect()->extend(
     fn (): ArchExpectation => // @phpstan-ignore-next-line
     $this->toUse('Saloon\Http\Auth\HeaderAuthenticator')
 );
+
+expect()->extend(
+    'toUseQueryAuthentication',
+    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    $this->toUse('Saloon\Http\Auth\QueryAuthenticator')
+);

@@ -81,3 +81,13 @@ it('checks that a request has a stream body', function () {
     expect('Tests\Fixtures\Arch\ToHaveStreamBody\ToHaveStreamBody')
         ->toHaveStreamBody();
 });
+
+it('checks that a request has a default query', function () {
+    expect('Tests\Fixtures\Arch\ToHaveDefaultQuery\ToHaveDefaultQuery')
+        ->toHaveDefaultQuery();
+});
+
+it('checks that a request has a default body', function () {
+    expect('Tests\Fixtures\Arch\ToHaveDefaultBody\ToHaveDefaultBody')
+        ->toHaveDefaultBody();
+});
