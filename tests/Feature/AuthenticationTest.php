@@ -27,3 +27,8 @@ it('checks that a class uses multiple authentication methods', function () {
         ->toUseCertificateAuthentication()
         ->toUseTokenAuthentication();
 });
+
+it('checks that a class uses query authentication', function () {
+    expect('Tests\Fixtures\Arch\ToUseQueryAuthentication\ToUseQueryAuthentication')
+        ->toUseQueryAuthentication();
+});

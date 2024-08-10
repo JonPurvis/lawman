@@ -131,3 +131,15 @@ expect()->extend(
     $this->toImplement('Saloon\Contracts\Body\HasBody')
         ->toUse('Saloon\Traits\Body\HasStreamBody')
 );
+
+expect()->extend(
+    'toHaveDefaultQuery',
+    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    $this->toHaveMethod('defaultQuery')
+);
+
+expect()->extend(
+    'toHaveDefaultBody',
+    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    $this->toHaveMethod('defaultBody')
+);
