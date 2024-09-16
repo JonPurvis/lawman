@@ -9,6 +9,10 @@ use Saloon\Http\Request;
 
 class ToUseExponentialBackoff extends Request
 {
+    public function __construct(
+        public string $test
+    ){}
+
     /**
      * Define the HTTP method
      */
