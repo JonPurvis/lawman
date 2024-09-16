@@ -31,7 +31,7 @@ expect()->extend(
     fn (): Expectation => // @phpstan-ignore-next-line
     expect(property_exists($this->value, 'retryInterval'))->toBeTrue()
         ->and((new ReflectionClass($this->value)) // @phpstan-ignore-line
-        ->getProperty('retryInterval')
+            ->getProperty('retryInterval')
             ->getValue((new ReflectionClass($this->value))->newInstanceWithoutConstructor())) // @phpstan-ignore-line
         ->toBeGreaterThan(0)
 );
