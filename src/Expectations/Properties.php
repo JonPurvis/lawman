@@ -6,34 +6,42 @@ use Pest\Expectation;
 
 expect()->extend(
     'toSetConnectTimeout',
-    fn (): Expectation => // @phpstan-ignore-next-line
+    fn (int $connectTimeout = 10): Expectation => // @phpstan-ignore-next-line
     expect(property_exists($this->value, 'connectTimeout'))->toBeTrue()
+        ->and((new ReflectionClass($this->value)) // @phpstan-ignore-line
+        ->getProperty('connectTimeout')
+            ->getValue((new ReflectionClass($this->value))->newInstanceWithoutConstructor())) // @phpstan-ignore-line
+        ->toEqual($connectTimeout)
 );
 
 expect()->extend(
     'toSetRequestTimeout',
-    fn (): Expectation => // @phpstan-ignore-next-line
+    fn (int $requestTimeout = 30): Expectation => // @phpstan-ignore-next-line
     expect(property_exists($this->value, 'requestTimeout'))->toBeTrue()
+        ->and((new ReflectionClass($this->value)) // @phpstan-ignore-line
+        ->getProperty('requestTimeout')
+            ->getValue((new ReflectionClass($this->value))->newInstanceWithoutConstructor())) // @phpstan-ignore-line
+        ->toEqual($requestTimeout)
 );
 
 expect()->extend(
     'toBeTriedAgainOnFailure',
-    fn (): Expectation => // @phpstan-ignore-next-line
+    fn (int $tries = 3): Expectation => // @phpstan-ignore-next-line
     expect(property_exists($this->value, 'tries'))->toBeTrue()
         ->and((new ReflectionClass($this->value)) // @phpstan-ignore-line
             ->getProperty('tries')
             ->getValue((new ReflectionClass($this->value))->newInstanceWithoutConstructor())) // @phpstan-ignore-line
-        ->toBeGreaterThan(1)
+        ->toEqual($tries)
 );
 
 expect()->extend(
     'toHaveRetryInterval',
-    fn (): Expectation => // @phpstan-ignore-next-line
+    fn (int $retryInterval = 500): Expectation => // @phpstan-ignore-next-line
     expect(property_exists($this->value, 'retryInterval'))->toBeTrue()
         ->and((new ReflectionClass($this->value)) // @phpstan-ignore-line
             ->getProperty('retryInterval')
             ->getValue((new ReflectionClass($this->value))->newInstanceWithoutConstructor())) // @phpstan-ignore-line
-        ->toBeGreaterThan(0)
+        ->toEqual($retryInterval)
 );
 
 expect()->extend(

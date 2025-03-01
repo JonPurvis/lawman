@@ -1,28 +1,31 @@
 name: Tests
 
-on: ['push', 'pull_request']
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        php: ['8.2', '8.3']
-        dependency-version: [ prefer-stable ]
-        parallel: [ '', '--parallel' ]
+        os: [ubuntu-latest, windows-latest]
+        php: [8.2, 8.3, 8.4]
+        stability: [prefer-stable]
 
     name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }} - ${{ matrix.parallel }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: composer:v2
           coverage: none
 
       - name: Setup Problem Matches
@@ -31,7 +34,13 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Install PHP dependencies
-        run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress --ansi
+        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
-      - name: Unit Tests
+      - name: Execute Tests
         run: composer test:unit
+
+      - name: Run Pint
+        run: vendor/bin/pint --test --dirty
+
+      - name: Run Analysis
+        run: ./vendor/bin/phpstan analyse

@@ -4,7 +4,6 @@
 
 A PestPHP Plugin for SaloonPHP that helps you enforce architectural rules with your API integrations. 
 
-[![Static Analysis](https://github.com/JonPurvis/lawman/actions/workflows/static.yml/badge.svg)](https://github.com/JonPurvis/lawman/actions/workflows/static.yml)
 [![Tests](https://github.com/JonPurvis/lawman/actions/workflows/tests.yml/badge.svg)](https://github.com/JonPurvis/lawman/actions/workflows/tests.yml)
 ![GitHub last commit](https://img.shields.io/github/last-commit/jonpurvis/lawman)
 ![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/jonpurvis/lawman/php)
@@ -101,8 +100,19 @@ as simple as:
 test('connector')
     ->expect('App\Http\Integrations\Integration\Connector')
     ->toBeSaloonConnector()
-    ->toBeTriedAgainOnFailure()
-    ->toHaveRetryInterval()
+    ->toBeTriedAgainOnFailure(tries: 3)
+    ->toHaveRetryInterval(retryInterval: 1500)
+    ->toUseExponentialBackoff()
+```
+
+Maybe our Connector is for an API that tends to be quite slow, so we increased some timeouts:
+
+```php
+test('connector')
+    ->expect('App\Http\Integrations\Integration\Connector')
+    ->toBeSaloonConnector()
+    ->toSetConnectTimeout(connectTimeout: 30)
+    ->toSetRequestTimeout(requestTimeout: 60)
     ->toUseExponentialBackoff()
 ```
 
