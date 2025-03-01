@@ -8,11 +8,11 @@ use Saloon\Enums\Method;
 
 function getRequestType(string $class): string
 {
-    $class = new ReflectionClass($class); // @phpstan-ignore-line
+    $class = new ReflectionClass($class);
     $newInstance = $class->newInstanceWithoutConstructor();
     $methodProperty = $class->getProperty('method');
 
-    return $methodProperty->getValue($newInstance)->name; // @phpstan-ignore-line
+    return $methodProperty->getValue($newInstance)->name;
 }
 
 expect()->extend(

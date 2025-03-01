@@ -27,6 +27,7 @@
         ]
     },
     "require-dev": {
+        "larastan/larastan": "^2.9",
         "pestphp/pest-dev-tools": "^2.9",
         "saloonphp/cache-plugin": "^3.0",
         "saloonphp/pagination-plugin": "^2.0",
