@@ -4,7 +4,15 @@ declare(strict_types=1);
 
 use Pest\Arch\Contracts\ArchExpectation;
 use Pest\Expectation;
+use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
+use Saloon\Http\Request;
+use Saloon\Traits\Body\HasFormBody;
+use Saloon\Traits\Body\HasJsonBody;
+use Saloon\Traits\Body\HasMultipartBody;
+use Saloon\Traits\Body\HasStreamBody;
+use Saloon\Traits\Body\HasStringBody;
+use Saloon\Traits\Body\HasXmlBody;
 
 function getRequestType(string $class): string
 {
@@ -18,7 +26,7 @@ function getRequestType(string $class): string
 expect()->extend(
     'toBeSaloonRequest',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toExtend(\Saloon\Http\Request::class)
+    $this->toExtend(Request::class)
 );
 
 expect()->extend(
@@ -93,43 +101,43 @@ expect()->extend(
 expect()->extend(
     'toHaveJsonBody',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(\Saloon\Contracts\Body\HasBody::class)
-        ->toUse(\Saloon\Traits\Body\HasJsonBody::class)
+    $this->toImplement(HasBody::class)
+        ->toUse(HasJsonBody::class)
 );
 
 expect()->extend(
     'toHaveMultipartBody',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(\Saloon\Contracts\Body\HasBody::class)
-        ->toUse(\Saloon\Traits\Body\HasMultipartBody::class)
+    $this->toImplement(HasBody::class)
+        ->toUse(HasMultipartBody::class)
 );
 
 expect()->extend(
     'toHaveXmlBody',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(\Saloon\Contracts\Body\HasBody::class)
-        ->toUse(\Saloon\Traits\Body\HasXmlBody::class)
+    $this->toImplement(HasBody::class)
+        ->toUse(HasXmlBody::class)
 );
 
 expect()->extend(
     'toHaveFormBody',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(\Saloon\Contracts\Body\HasBody::class)
-        ->toUse(\Saloon\Traits\Body\HasFormBody::class)
+    $this->toImplement(HasBody::class)
+        ->toUse(HasFormBody::class)
 );
 
 expect()->extend(
     'toHaveStringBody',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(\Saloon\Contracts\Body\HasBody::class)
-        ->toUse(\Saloon\Traits\Body\HasStringBody::class)
+    $this->toImplement(HasBody::class)
+        ->toUse(HasStringBody::class)
 );
 
 expect()->extend(
     'toHaveStreamBody',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(\Saloon\Contracts\Body\HasBody::class)
-        ->toUse(\Saloon\Traits\Body\HasStreamBody::class)
+    $this->toImplement(HasBody::class)
+        ->toUse(HasStreamBody::class)
 );
 
 expect()->extend(

@@ -3,14 +3,39 @@
 declare(strict_types=1);
 
 use Pest\Expectation;
+use Saloon\Http\Connector;
+use Saloon\Http\Request;
+use Saloon\PaginationPlugin\Contracts\HasPagination;
+use Saloon\PaginationPlugin\Contracts\HasRequestPagination;
+use Saloon\PaginationPlugin\CursorPaginator;
+use Saloon\PaginationPlugin\OffsetPaginator;
+use Saloon\PaginationPlugin\PagedPaginator;
+use Saloon\PaginationPlugin\Paginator;
+
+/**
+ * @return class-string
+ */
+function lawmanExpectationClassName(mixed $value): string
+{
+    if (! is_string($value)) {
+        throw new InvalidArgumentException('Expectation value must be a class name string.');
+    }
+    if (class_exists($value)) {
+        return $value;
+    }
+    if (interface_exists($value)) {
+        return $value;
+    }
+    throw new InvalidArgumentException('Expectation value must be an existing class or interface.');
+}
 
 /**
  * @param  class-string  $class
  */
 function lawmanPaginateReturnTypeName(string $class): string
 {
-    $type = (new \ReflectionClass($class))->getMethod('paginate')->getReturnType();
-    if (! $type instanceof \ReflectionNamedType) {
+    $type = (new ReflectionClass($class))->getMethod('paginate')->getReturnType();
+    if (! $type instanceof ReflectionNamedType) {
         throw new RuntimeException('paginate() must declare a single named return type.');
     }
 
@@ -22,11 +47,11 @@ function lawmanPaginateReturnTypeName(string $class): string
  */
 function lawmanPaginateFirstParameterType(string $class): string
 {
-    $method = (new \ReflectionClass($class))->getMethod('paginate');
+    $method = (new ReflectionClass($class))->getMethod('paginate');
     $parameters = $method->getParameters();
     $first = $parameters[0] ?? throw new RuntimeException('paginate() must declare at least one parameter.');
     $type = $first->getType();
-    if (! $type instanceof \ReflectionNamedType) {
+    if (! $type instanceof ReflectionNamedType) {
         throw new RuntimeException('paginate() first parameter must use a single named type.');
     }
 
@@ -36,74 +61,64 @@ function lawmanPaginateFirstParameterType(string $class): string
 expect()->extend(
     'toUsePagedPagination',
     function (): Expectation {
-        /** @phpstan-ignore-next-line */
-        $class = $this->value;
+        $class = lawmanExpectationClassName($this->value);
 
-        /** @phpstan-ignore-next-line */
-        return $this->toImplement(\Saloon\PaginationPlugin\Contracts\HasPagination::class)
+        return $this->toImplement(HasPagination::class)
             ->and(lawmanPaginateReturnTypeName($class))
-            ->toEqual(\Saloon\PaginationPlugin\PagedPaginator::class)
+            ->toEqual(PagedPaginator::class)
             ->and(lawmanPaginateFirstParameterType($class))
-            ->toEqual(\Saloon\Http\Request::class);
+            ->toEqual(Request::class);
     }
 );
 
 expect()->extend(
     'toUseOffsetPagination',
     function (): Expectation {
-        /** @phpstan-ignore-next-line */
-        $class = $this->value;
+        $class = lawmanExpectationClassName($this->value);
 
-        /** @phpstan-ignore-next-line */
-        return $this->toImplement(\Saloon\PaginationPlugin\Contracts\HasPagination::class)
+        return $this->toImplement(HasPagination::class)
             ->and(lawmanPaginateReturnTypeName($class))
-            ->toEqual(\Saloon\PaginationPlugin\OffsetPaginator::class)
+            ->toEqual(OffsetPaginator::class)
             ->and(lawmanPaginateFirstParameterType($class))
-            ->toEqual(\Saloon\Http\Request::class);
+            ->toEqual(Request::class);
     }
 );
 
 expect()->extend(
     'toUseCursorPagination',
     function (): Expectation {
-        /** @phpstan-ignore-next-line */
-        $class = $this->value;
+        $class = lawmanExpectationClassName($this->value);
 
-        /** @phpstan-ignore-next-line */
-        return $this->toImplement(\Saloon\PaginationPlugin\Contracts\HasPagination::class)
+        return $this->toImplement(HasPagination::class)
             ->and(lawmanPaginateReturnTypeName($class))
-            ->toEqual(\Saloon\PaginationPlugin\CursorPaginator::class)
+            ->toEqual(CursorPaginator::class)
             ->and(lawmanPaginateFirstParameterType($class))
-            ->toEqual(\Saloon\Http\Request::class);
+            ->toEqual(Request::class);
     }
 );
 
 expect()->extend(
     'toUseCustomPagination',
     function (): Expectation {
-        /** @phpstan-ignore-next-line */
-        $class = $this->value;
+        $class = lawmanExpectationClassName($this->value);
 
-        /** @phpstan-ignore-next-line */
-        return $this->toImplement(\Saloon\PaginationPlugin\Contracts\HasPagination::class)
+        return $this->toImplement(HasPagination::class)
             ->and(lawmanPaginateReturnTypeName($class))
-            ->toEqual(\Saloon\PaginationPlugin\Paginator::class)
+            ->toEqual(Paginator::class)
             ->and(lawmanPaginateFirstParameterType($class))
-            ->toEqual(\Saloon\Http\Request::class);
+            ->toEqual(Request::class);
     }
 );
 
 expect()->extend(
     'toUseRequestPagination',
     function (): Expectation {
-        /** @phpstan-ignore-next-line */
-        $class = $this->value;
+        $class = lawmanExpectationClassName($this->value);
 
-        /** @phpstan-ignore-next-line */
-        return $this->toImplement(\Saloon\PaginationPlugin\Contracts\HasRequestPagination::class)
+        return $this->toImplement(HasRequestPagination::class)
             ->and(lawmanPaginateReturnTypeName($class))
-            ->toEqual(\Saloon\PaginationPlugin\Paginator::class)
+            ->toEqual(Paginator::class)
             ->and(lawmanPaginateFirstParameterType($class))
-            ->toEqual(\Saloon\Http\Connector::class);
+            ->toEqual(Connector::class);
     }
 );

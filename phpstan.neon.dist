@@ -5,3 +5,8 @@ parameters:
     level: 5
     paths:
         - src
+    ignoreErrors:
+        # Pest binds these closures to Expectation; $this is valid at runtime.
+        -
+            message: '#Undefined variable: \$this#'
+            path: src/Expectations/Pagination.php

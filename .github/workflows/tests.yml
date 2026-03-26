@@ -33,8 +33,15 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
+      # Without a committed lockfile, `composer update` resolves per job PHP version.
+      # Pest 4 requires PHP ^8.3, so 8.2 would get Pest 3 and 8.3/8.4 would get Pest 4 — different
+      # PHPUnit, PHPStan, Pint, etc. Pin the platform so every matrix job installs the same tree
+      # while tests still run on the real matrix PHP.
       - name: Install PHP dependencies
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+        run: |
+          composer config platform.php 8.2.27
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+          git checkout HEAD -- composer.json
 
       - name: Execute Tests
         run: composer test:unit

@@ -3,33 +3,38 @@
 declare(strict_types=1);
 
 use Pest\Arch\Contracts\ArchExpectation;
+use Saloon\Http\Auth\BasicAuthenticator;
+use Saloon\Http\Auth\CertificateAuthenticator;
+use Saloon\Http\Auth\HeaderAuthenticator;
+use Saloon\Http\Auth\QueryAuthenticator;
+use Saloon\Http\Auth\TokenAuthenticator;
 
 expect()->extend(
     'toUseTokenAuthentication',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toUse(\Saloon\Http\Auth\TokenAuthenticator::class)
+    $this->toUse(TokenAuthenticator::class)
 );
 
 expect()->extend(
     'toUseBasicAuthentication',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toUse(\Saloon\Http\Auth\BasicAuthenticator::class)
+    $this->toUse(BasicAuthenticator::class)
 );
 
 expect()->extend(
     'toUseCertificateAuthentication',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toUse(\Saloon\Http\Auth\CertificateAuthenticator::class)
+    $this->toUse(CertificateAuthenticator::class)
 );
 
 expect()->extend(
     'toUseHeaderAuthentication',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toUse(\Saloon\Http\Auth\HeaderAuthenticator::class)
+    $this->toUse(HeaderAuthenticator::class)
 );
 
 expect()->extend(
     'toUseQueryAuthentication',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toUse(\Saloon\Http\Auth\QueryAuthenticator::class)
+    $this->toUse(QueryAuthenticator::class)
 );

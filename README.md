@@ -81,18 +81,17 @@ test('connector')
     ->toUseTokenAuthentication();
 ```
 
-Lawman also has Expectations for the Pagination, Cache and Rate Limit plugins. Pagination is configured on your **connector** (via `HasPagination` or `HasRequestPagination`):
+Lawman also has Expectations for the Pagination, Cache and Rate Limit Plugins:
 
 ```php
-test('connector')
-    ->expect('App\Http\Integrations\Integration\Connector')
-    ->toBeSaloonConnector()
+test('request')
+    ->expect('App\Http\Integrations\Integration\Requests\Request')
+    ->toBeSaloonRequest()
+    ->toSendPostRequest()
     ->toUsePagedPagination()
     ->toHaveCaching()
-    ->toHaveRateLimits();
+    ->toHaveRateLimits()
 ```
-
-Use `toUseRequestPagination()` when the connector implements `HasRequestPagination` (pagination is driven from the connector with a `Connector` argument to `paginate()`), instead of `HasPagination` (which passes the `Request` into `paginate()`).
 
 Maybe our Connector has some Retry instructions that we want to test. Again, with Lawman, it's 
 as simple as:
@@ -116,50 +115,6 @@ test('connector')
     ->toSetRequestTimeout(requestTimeout: 60)
     ->toUseExponentialBackoff()
 ```
-
-## Available expectations
-
-The [Lawman page on the Saloon docs](https://docs.saloon.dev/installable-plugins/lawman) may lag this package; the following matches the current codebase.
-
-### Authentication
-
-- `toUseTokenAuthentication`, `toUseBasicAuthentication`, `toUseCertificateAuthentication`, `toUseHeaderAuthentication`, `toUseQueryAuthentication`
-
-### Cache
-
-- `toHaveCaching`
-
-### Connector
-
-- `toBeSaloonConnector`, `toHaveDefaultHeaders`, `toHaveDefaultConfig`, `toHaveBaseUrl`, `toUseCustomResponse`, `toHaveCustomFailureDetection`, `toHaveCustomException`
-
-### Pagination
-
-- `toUsePagedPagination`, `toUseOffsetPagination`, `toUseCursorPagination`, `toUseCustomPagination`, `toUseRequestPagination`
-
-### Plugin
-
-- `toBeSaloonPlugin`
-
-### Properties
-
-- `toSetConnectTimeout`, `toSetRequestTimeout`, `toBeTriedAgainOnFailure`, `toHaveRetryInterval`, `toUseExponentialBackoff`, `toThrowOnMaxTries`
-
-### Rate limit
-
-- `toHaveRateLimits`
-
-### Request
-
-- `toBeSaloonRequest`, `toHaveRequestMethod`, `toSendGetRequest`, `toSendPostRequest`, `toSendHeadRequest`, `toSendPutRequest`, `toSendPatchRequest`, `toSendDeleteRequest`, `toSendOptionsRequest`, `toSendConnectRequest`, `toSendTraceRequest`, `toHaveJsonBody`, `toHaveMultipartBody`, `toHaveXmlBody`, `toHaveFormBody`, `toHaveStringBody`, `toHaveStreamBody`, `toHaveDefaultQuery`, `toHaveDefaultBody`
-
-### Response
-
-- `toBeSaloonResponse`
-
-### Trait
-
-- `toUseAcceptsJsonTrait`, `toUseAlwaysThrowOnErrorsTrait`, `toUseTimeoutTrait`, `toUseAuthorisationCodeGrantTrait`, `toUseClientCredentialsGrantTrait`
 
 ## Contributing
 Contributions to the package are more than welcome so if you think of an Expectation you'd like to
