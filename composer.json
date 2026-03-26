@@ -29,10 +29,10 @@
     "require-dev": {
         "larastan/larastan": "^2.9",
         "pestphp/pest-dev-tools": "^2.9",
-        "saloonphp/cache-plugin": "^3.0",
+        "saloonphp/cache-plugin": "^3.1",
         "saloonphp/pagination-plugin": "^2.0",
-        "saloonphp/rate-limit-plugin": "^2.0",
-        "saloonphp/saloon": "^3.6"
+        "saloonphp/rate-limit-plugin": "^2.5",
+        "saloonphp/saloon": "^4.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

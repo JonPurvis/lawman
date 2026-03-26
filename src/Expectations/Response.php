@@ -7,5 +7,5 @@ use Pest\Arch\Contracts\ArchExpectation;
 expect()->extend(
     'toBeSaloonResponse',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toExtend('Saloon\Http\Response')
+    $this->toExtend(\Saloon\Http\Response::class)
 );

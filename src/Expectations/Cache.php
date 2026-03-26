@@ -7,6 +7,6 @@ use Pest\Arch\SingleArchExpectation;
 expect()->extend(
     'toHaveCaching',
     fn (): SingleArchExpectation => // @phpstan-ignore-next-line
-    $this->toUse('Saloon\CachePlugin\Traits\HasCaching')
-        ->toImplement('Saloon\CachePlugin\Contracts\Cacheable')
+    $this->toUse(\Saloon\CachePlugin\Traits\HasCaching::class)
+        ->toImplement(\Saloon\CachePlugin\Contracts\Cacheable::class)
 );

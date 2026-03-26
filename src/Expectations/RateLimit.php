@@ -7,5 +7,5 @@ use Pest\Arch\Contracts\ArchExpectation;
 expect()->extend(
     'toHaveRateLimits',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toUse('Saloon\RateLimitPlugin\Traits\HasRateLimits')
+    $this->toUse(\Saloon\RateLimitPlugin\Traits\HasRateLimits::class)
 );

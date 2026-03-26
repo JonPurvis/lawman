@@ -7,7 +7,7 @@ use Pest\Arch\Contracts\ArchExpectation;
 expect()->extend(
     'toBeSaloonConnector',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toExtend('Saloon\Http\Connector')
+    $this->toExtend(\Saloon\Http\Connector::class)
 );
 
 expect()->extend(
