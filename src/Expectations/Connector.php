@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use Pest\Arch\Contracts\ArchExpectation;
+use Saloon\Http\Connector;
 
 expect()->extend(
     'toBeSaloonConnector',
     fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toExtend('Saloon\Http\Connector')
+    $this->toExtend(Connector::class)
 );
 
 expect()->extend(

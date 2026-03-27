@@ -9,7 +9,7 @@ expect()->extend(
     fn (int $connectTimeout = 10): Expectation => // @phpstan-ignore-next-line
     expect(property_exists($this->value, 'connectTimeout'))->toBeTrue()
         ->and((new ReflectionClass($this->value)) // @phpstan-ignore-line
-        ->getProperty('connectTimeout')
+            ->getProperty('connectTimeout')
             ->getValue((new ReflectionClass($this->value))->newInstanceWithoutConstructor())) // @phpstan-ignore-line
         ->toEqual($connectTimeout)
 );
@@ -19,7 +19,7 @@ expect()->extend(
     fn (int $requestTimeout = 30): Expectation => // @phpstan-ignore-next-line
     expect(property_exists($this->value, 'requestTimeout'))->toBeTrue()
         ->and((new ReflectionClass($this->value)) // @phpstan-ignore-line
-        ->getProperty('requestTimeout')
+            ->getProperty('requestTimeout')
             ->getValue((new ReflectionClass($this->value))->newInstanceWithoutConstructor())) // @phpstan-ignore-line
         ->toEqual($requestTimeout)
 );
