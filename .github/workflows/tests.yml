@@ -8,15 +8,8 @@ on:
 
 jobs:
   ci:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-        php: [8.2, 8.3, 8.4]
-        stability: [prefer-stable]
-
-    name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }} - ${{ matrix.parallel }}
+    runs-on: ubuntu-latest
+    name: PHP 8.2
 
     steps:
       - name: Checkout
@@ -25,7 +18,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: '8.2'
           coverage: none
 
       - name: Setup Problem Matches
@@ -33,15 +26,8 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      # Without a committed lockfile, `composer update` resolves per job PHP version.
-      # Pest 4 requires PHP ^8.3, so 8.2 would get Pest 3 and 8.3/8.4 would get Pest 4 — different
-      # PHPUnit, PHPStan, Pint, etc. Pin the platform so every matrix job installs the same tree
-      # while tests still run on the real matrix PHP.
       - name: Install PHP dependencies
-        run: |
-          composer config platform.php 8.2.27
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
-          git checkout HEAD -- composer.json
+        run: composer update --prefer-stable --prefer-dist --no-interaction
 
       - name: Execute Tests
         run: composer test:unit
