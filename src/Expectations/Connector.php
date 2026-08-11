@@ -7,42 +7,42 @@ use Saloon\Http\Connector;
 
 expect()->extend(
     'toBeSaloonConnector',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toExtend(Connector::class)
 );
 
 expect()->extend(
     'toHaveDefaultHeaders',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toHaveMethod('defaultHeaders')
 );
 
 expect()->extend(
     'toHaveDefaultConfig',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toHaveMethod('defaultConfig')
 );
 
 expect()->extend(
     'toHaveBaseUrl',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toHaveMethod('resolveBaseUrl')
 );
 
 expect()->extend(
     'toUseCustomResponse',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toHaveMethod('resolveResponseClass')
 );
 
 expect()->extend(
     'toHaveCustomFailureDetection',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toHaveMethod('hasRequestFailed')
 );
 
 expect()->extend(
     'toHaveCustomException',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toHaveMethod('getRequestException')
 );

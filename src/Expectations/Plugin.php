@@ -6,6 +6,6 @@ use Pest\Arch\Contracts\ArchExpectation;
 
 expect()->extend(
     'toBeSaloonPlugin',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toBeTrait()
 );

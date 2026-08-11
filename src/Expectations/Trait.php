@@ -11,30 +11,30 @@ use Saloon\Traits\Plugins\HasTimeout;
 
 expect()->extend(
     'toUseAcceptsJsonTrait',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(AcceptsJson::class)
 );
 
 expect()->extend(
     'toUseAlwaysThrowOnErrorsTrait',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(AlwaysThrowOnErrors::class)
 );
 
 expect()->extend(
     'toUseTimeoutTrait',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(HasTimeout::class)
 );
 
 expect()->extend(
     'toUseAuthorisationCodeGrantTrait',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(AuthorizationCodeGrant::class)
 );
 
 expect()->extend(
     'toUseClientCredentialsGrantTrait',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(ClientCredentialsGrant::class)
 );

@@ -7,6 +7,6 @@ use Saloon\RateLimitPlugin\Traits\HasRateLimits;
 
 expect()->extend(
     'toHaveRateLimits',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(HasRateLimits::class)
 );

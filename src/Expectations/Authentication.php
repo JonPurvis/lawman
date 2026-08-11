@@ -11,30 +11,30 @@ use Saloon\Http\Auth\TokenAuthenticator;
 
 expect()->extend(
     'toUseTokenAuthentication',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(TokenAuthenticator::class)
 );
 
 expect()->extend(
     'toUseBasicAuthentication',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(BasicAuthenticator::class)
 );
 
 expect()->extend(
     'toUseCertificateAuthentication',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(CertificateAuthenticator::class)
 );
 
 expect()->extend(
     'toUseHeaderAuthentication',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(HeaderAuthenticator::class)
 );
 
 expect()->extend(
     'toUseQueryAuthentication',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
+    fn (): ArchExpectation =>
     $this->toUse(QueryAuthenticator::class)
 );
