@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Pest\Arch\Contracts\ArchExpectation;
-use Pest\Expectation;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -13,6 +12,15 @@ use Saloon\Traits\Body\HasMultipartBody;
 use Saloon\Traits\Body\HasStreamBody;
 use Saloon\Traits\Body\HasStringBody;
 use Saloon\Traits\Body\HasXmlBody;
+
+function getRequestClass(mixed $value): string
+{
+    if (! is_string($value) || ! class_exists($value)) {
+        throw new InvalidArgumentException('Expected a class string.');
+    }
+
+    return $value;
+}
 
 function getRequestType(string $class): string
 {
@@ -25,129 +33,150 @@ function getRequestType(string $class): string
 
 expect()->extend(
     'toBeSaloonRequest',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toExtend(Request::class)
+    fn (): ArchExpectation => $this->toExtend(Request::class)
 );
 
 expect()->extend(
     'toHaveRequestMethod',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(property_exists($this->value, 'method'))->toBeTrue()
+    function () {
+        expect(property_exists(getRequestClass($this->value), 'method'))->toBeTrue();
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendGetRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::GET->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::GET->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendPostRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::POST->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::POST->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendHeadRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::HEAD->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::HEAD->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendPutRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::PUT->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::PUT->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendPatchRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::PATCH->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::PATCH->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendDeleteRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::DELETE->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::DELETE->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendOptionsRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::OPTIONS->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::OPTIONS->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendConnectRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::CONNECT->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::CONNECT->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toSendTraceRequest',
-    fn (): Expectation => // @phpstan-ignore-next-line
-    expect(getRequestType($this->value))
-        ->toEqual(Method::TRACE->name)
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::TRACE->name);
+
+        return $this;
+    }
 );
 
 expect()->extend(
     'toHaveJsonBody',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(HasBody::class)
+    fn (): ArchExpectation => $this->toImplement(HasBody::class)
         ->toUse(HasJsonBody::class)
 );
 
 expect()->extend(
     'toHaveMultipartBody',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(HasBody::class)
+    fn (): ArchExpectation => $this->toImplement(HasBody::class)
         ->toUse(HasMultipartBody::class)
 );
 
 expect()->extend(
     'toHaveXmlBody',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(HasBody::class)
+    fn (): ArchExpectation => $this->toImplement(HasBody::class)
         ->toUse(HasXmlBody::class)
 );
 
 expect()->extend(
     'toHaveFormBody',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(HasBody::class)
+    fn (): ArchExpectation => $this->toImplement(HasBody::class)
         ->toUse(HasFormBody::class)
 );
 
 expect()->extend(
     'toHaveStringBody',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(HasBody::class)
+    fn (): ArchExpectation => $this->toImplement(HasBody::class)
         ->toUse(HasStringBody::class)
 );
 
 expect()->extend(
     'toHaveStreamBody',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toImplement(HasBody::class)
+    fn (): ArchExpectation => $this->toImplement(HasBody::class)
         ->toUse(HasStreamBody::class)
 );
 
 expect()->extend(
     'toHaveDefaultQuery',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toHaveMethod('defaultQuery')
+    fn (): ArchExpectation => $this->toHaveMethod('defaultQuery')
 );
 
 expect()->extend(
     'toHaveDefaultBody',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toHaveMethod('defaultBody')
+    fn (): ArchExpectation => $this->toHaveMethod('defaultBody')
 );
