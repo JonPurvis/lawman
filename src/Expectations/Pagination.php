@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Pest\Mixins\Expectation;
+use Pest\Expectation;
 use Saloon\Http\Connector;
 use Saloon\Http\Request;
 use Saloon\PaginationPlugin\Contracts\HasPagination;

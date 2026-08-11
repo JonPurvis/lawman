@@ -13,9 +13,9 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "pestphp/pest": "^3.0|^4.0|^5.0",
-        "pestphp/pest-plugin": "^3.0|^4.0|^5.0"
+        "php": "^8.3",
+        "pestphp/pest": "^4.0|^5.0",
+        "pestphp/pest-plugin": "^4.0|^5.0"
     },
     "autoload": {
         "psr-4": {
@@ -27,8 +27,8 @@
         ]
     },
     "require-dev": {
-        "larastan/larastan": "^3.10",
-        "pestphp/pest-dev-tools": "^5.0",
+        "larastan/larastan": "^2.9||^3.0",
+        "pestphp/pest-dev-tools": "^4.0|^5.0",
         "saloonphp/cache-plugin": "^3.1",
         "saloonphp/pagination-plugin": "^2.0",
         "saloonphp/rate-limit-plugin": "^2.5",

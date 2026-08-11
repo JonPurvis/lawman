@@ -6,6 +6,5 @@ use Pest\Arch\Contracts\ArchExpectation;
 
 expect()->extend(
     'toBeSaloonPlugin',
-    fn (): ArchExpectation =>
-    $this->toBeTrait()
+    fn (): ArchExpectation => $this->toBeTrait()
 );

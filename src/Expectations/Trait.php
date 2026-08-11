@@ -11,30 +11,25 @@ use Saloon\Traits\Plugins\HasTimeout;
 
 expect()->extend(
     'toUseAcceptsJsonTrait',
-    fn (): ArchExpectation =>
-    $this->toUse(AcceptsJson::class)
+    fn (): ArchExpectation => $this->toUse(AcceptsJson::class)
 );
 
 expect()->extend(
     'toUseAlwaysThrowOnErrorsTrait',
-    fn (): ArchExpectation =>
-    $this->toUse(AlwaysThrowOnErrors::class)
+    fn (): ArchExpectation => $this->toUse(AlwaysThrowOnErrors::class)
 );
 
 expect()->extend(
     'toUseTimeoutTrait',
-    fn (): ArchExpectation =>
-    $this->toUse(HasTimeout::class)
+    fn (): ArchExpectation => $this->toUse(HasTimeout::class)
 );
 
 expect()->extend(
     'toUseAuthorisationCodeGrantTrait',
-    fn (): ArchExpectation =>
-    $this->toUse(AuthorizationCodeGrant::class)
+    fn (): ArchExpectation => $this->toUse(AuthorizationCodeGrant::class)
 );
 
 expect()->extend(
     'toUseClientCredentialsGrantTrait',
-    fn (): ArchExpectation =>
-    $this->toUse(ClientCredentialsGrant::class)
+    fn (): ArchExpectation => $this->toUse(ClientCredentialsGrant::class)
 );

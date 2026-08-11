@@ -5,3 +5,8 @@ parameters:
     level: 5
     paths:
         - src
+    ignoreErrors:
+        # Pest's Expectation mixin stubs report Mixins\Expectation; runtime returns Pest\Expectation.
+        -
+            identifier: return.type
+            path: src/Expectations/Pagination.php
