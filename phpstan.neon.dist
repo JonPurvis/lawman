@@ -6,7 +6,7 @@ parameters:
     paths:
         - src
     ignoreErrors:
-        # Pest binds these closures to Expectation; $this is valid at runtime.
+        # Pest's Expectation mixin stubs report Mixins\Expectation; runtime returns Pest\Expectation.
         -
-            message: '#Undefined variable: \$this#'
+            identifier: return.type
             path: src/Expectations/Pagination.php

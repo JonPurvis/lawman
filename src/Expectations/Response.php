@@ -7,6 +7,5 @@ use Saloon\Http\Response;
 
 expect()->extend(
     'toBeSaloonResponse',
-    fn (): ArchExpectation => // @phpstan-ignore-next-line
-    $this->toExtend(Response::class)
+    fn (): ArchExpectation => $this->toExtend(Response::class)
 );
