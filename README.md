@@ -116,6 +116,19 @@ test('connector')
     ->toUseExponentialBackoff()
 ```
 
+## PHPStan Support
+
+Lawman ships with a PHPStan extension so expectations like `toBeSaloonConnector()` and
+`toSendPostRequest()` are recognised when you analyse your test suite.
+
+If your project uses [`phpstan/extension-installer`](https://github.com/phpstan/extension-installer),
+the extension is registered automatically. Otherwise, add the following to your `phpstan.neon`:
+
+```neon
+includes:
+    - vendor/jonpurvis/lawman/extension.neon
+```
+
 ## Contributing
 Contributions to the package are more than welcome so if you think of an Expectation you'd like to
 see, feel free to submit a Pull Request or Open an Issue. If you do submit a Pull Request, please
