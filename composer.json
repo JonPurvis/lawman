@@ -26,6 +26,13 @@
             "src/Autoload.php"
         ]
     },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        }
+    },
     "require-dev": {
         "larastan/larastan": "^2.9||^3.0",
         "pestphp/pest-dev-tools": "^4.0|^5.0",

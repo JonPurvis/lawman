@@ -1,10 +1,12 @@
 includes:
     - phpstan-baseline.neon
+    - extension.neon
 
 parameters:
     level: 5
     paths:
         - src
+        - tests/Fixtures/PHPStan
     ignoreErrors:
         # Pest's Expectation mixin stubs report Mixins\Expectation; runtime returns Pest\Expectation.
         -
