@@ -47,7 +47,7 @@
         "saloonphp/cache-plugin": "^3.1",
         "saloonphp/pagination-plugin": "^2.0",
         "saloonphp/rate-limit-plugin": "^2.5",
-        "saloonphp/saloon": "^4.0",
+        "saloonphp/saloon": "^4.5",
         "symfony/var-dumper": "^7.0 || ^8.0"
     },
     "minimum-stability": "dev",

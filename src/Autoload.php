@@ -7,6 +7,7 @@ namespace JonPurvis\Lawman;
 require_once __DIR__.'/Expectations/Authentication.php';
 require_once __DIR__.'/Expectations/Cache.php';
 require_once __DIR__.'/Expectations/Connector.php';
+require_once __DIR__.'/Expectations/Middleware.php';
 require_once __DIR__.'/Expectations/Pagination.php';
 require_once __DIR__.'/Expectations/Plugin.php';
 require_once __DIR__.'/Expectations/Properties.php';

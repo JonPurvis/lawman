@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
+use Pest\Arch\Contracts\ArchExpectation;
 use Pest\Expectation;
 use Saloon\Http\Connector;
 use Saloon\Http\Request;
 use Saloon\PaginationPlugin\Contracts\HasPagination;
 use Saloon\PaginationPlugin\Contracts\HasRequestPagination;
+use Saloon\PaginationPlugin\Contracts\MapPaginatedResponseItems;
+use Saloon\PaginationPlugin\Contracts\Paginatable;
 use Saloon\PaginationPlugin\CursorPaginator;
 use Saloon\PaginationPlugin\OffsetPaginator;
 use Saloon\PaginationPlugin\PagedPaginator;
 use Saloon\PaginationPlugin\Paginator;
+use Saloon\PaginationPlugin\Traits\HasAsyncPagination;
 
 /**
  * @return class-string
@@ -59,6 +63,14 @@ function lawmanPaginateFirstParameterType(string $class): string
     }
 
     return $type->getName();
+}
+
+/**
+ * @param  class-string  $class
+ */
+function lawmanMethodIsDeclaredOn(string $class, string $method): bool
+{
+    return (new ReflectionClass($class))->getMethod($method)->getDeclaringClass()->getName() === $class;
 }
 
 expect()->extend(
@@ -124,4 +136,19 @@ expect()->extend(
             ->and(lawmanPaginateFirstParameterType($class))
             ->toEqual(Connector::class);
     }
+);
+
+expect()->extend(
+    'toBePaginatable',
+    fn (): ArchExpectation => $this->toImplement(Paginatable::class)
+);
+
+expect()->extend(
+    'toUseAsyncPagination',
+    fn (): ArchExpectation => $this->toUse(HasAsyncPagination::class)
+);
+
+expect()->extend(
+    'toMapPaginatedResponseItems',
+    fn (): ArchExpectation => $this->toImplement(MapPaginatedResponseItems::class)
 );

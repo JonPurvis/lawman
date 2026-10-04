@@ -19,6 +19,18 @@ interface ExpectationMethods
 
     public function toUseQueryAuthentication(): Expectation;
 
+    public function toUseDigestAuthentication(): Expectation;
+
+    public function toUseMultipleAuthenticators(): Expectation;
+
+    public function toUseAccessTokenAuthentication(): Expectation;
+
+    public function toUseNullAuthentication(): Expectation;
+
+    public function toBeSaloonAuthenticator(): Expectation;
+
+    public function toBeOAuthAuthenticator(): Expectation;
+
     public function toHaveCaching(): Expectation;
 
     public function toBeSaloonConnector(): Expectation;
@@ -35,6 +47,18 @@ interface ExpectationMethods
 
     public function toHaveCustomException(): Expectation;
 
+    public function toHaveDefaultAuth(): Expectation;
+
+    public function toHaveDefaultOauthConfig(): Expectation;
+
+    public function toBeSaloonResource(): Expectation;
+
+    public function toHaveBootMethod(): Expectation;
+
+    public function toHandlePsrRequest(): Expectation;
+
+    public function toHaveDefaultSender(): Expectation;
+
     public function toUsePagedPagination(): Expectation;
 
     public function toUseOffsetPagination(): Expectation;
@@ -44,6 +68,12 @@ interface ExpectationMethods
     public function toUseCustomPagination(): Expectation;
 
     public function toUseRequestPagination(): Expectation;
+
+    public function toBePaginatable(): Expectation;
+
+    public function toUseAsyncPagination(): Expectation;
+
+    public function toMapPaginatedResponseItems(): Expectation;
 
     public function toBeSaloonPlugin(): Expectation;
 
@@ -58,6 +88,10 @@ interface ExpectationMethods
     public function toUseExponentialBackoff(): Expectation;
 
     public function toThrowOnMaxTries(): Expectation;
+
+    public function toHaveDefaultDelay(): Expectation;
+
+    public function toHaveCustomRetryHandling(): Expectation;
 
     public function toHaveRateLimits(): Expectation;
 
@@ -83,6 +117,8 @@ interface ExpectationMethods
 
     public function toSendTraceRequest(): Expectation;
 
+    public function toSendQueryRequest(): Expectation;
+
     public function toHaveJsonBody(): Expectation;
 
     public function toHaveMultipartBody(): Expectation;
@@ -99,7 +135,19 @@ interface ExpectationMethods
 
     public function toHaveDefaultBody(): Expectation;
 
+    public function toBeSoloRequest(): Expectation;
+
+    public function toHaveEndpoint(): Expectation;
+
+    public function toCreateDtoFromResponse(): Expectation;
+
     public function toBeSaloonResponse(): Expectation;
+
+    public function toBeSaloonDto(): Expectation;
+
+    public function toBeRequestMiddleware(): Expectation;
+
+    public function toBeResponseMiddleware(): Expectation;
 
     public function toUseAcceptsJsonTrait(): Expectation;
 
@@ -110,4 +158,10 @@ interface ExpectationMethods
     public function toUseAuthorisationCodeGrantTrait(): Expectation;
 
     public function toUseClientCredentialsGrantTrait(): Expectation;
+
+    public function toUseClientCredentialsBasicAuthGrantTrait(): Expectation;
+
+    public function toUseRequiresAuthTrait(): Expectation;
+
+    public function toUseApiVersionTrait(): Expectation;
 }

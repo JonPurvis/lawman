@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Pest\Expectation;
+
 function getPropertiesClass(mixed $value): string
 {
     if (! is_string($value) || ! class_exists($value)) {
@@ -59,4 +61,26 @@ expect()->extend(
     fn () => expect(property_exists(getPropertiesClass($this->value), 'throwOnMaxTries'))->toBeTrue()
         ->and(getPropertyDefaultValue($this->value, 'throwOnMaxTries'))
         ->toBeTrue()
+);
+
+expect()->extend(
+    'toHaveDefaultDelay',
+    function (): Expectation {
+        $class = lawmanExpectationClassName($this->value);
+
+        expect(lawmanMethodIsDeclaredOn($class, 'defaultDelay'))->toBeTrue();
+
+        return $this;
+    }
+);
+
+expect()->extend(
+    'toHaveCustomRetryHandling',
+    function (): Expectation {
+        $class = lawmanExpectationClassName($this->value);
+
+        expect(lawmanMethodIsDeclaredOn($class, 'handleRetry'))->toBeTrue();
+
+        return $this;
+    }
 );
