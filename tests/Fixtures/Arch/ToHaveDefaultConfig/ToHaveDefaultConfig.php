@@ -13,7 +13,7 @@ class ToHaveDefaultConfig extends Connector
         return '';
     }
 
-    public function defaultConfig(): array
+    protected function defaultConfig(): array
     {
         return [];
     }
