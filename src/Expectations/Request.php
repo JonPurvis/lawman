@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 use Pest\Arch\Contracts\ArchExpectation;
+use Pest\Expectation;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\Http\SoloRequest;
 use Saloon\Traits\Body\HasFormBody;
 use Saloon\Traits\Body\HasJsonBody;
 use Saloon\Traits\Body\HasMultipartBody;
@@ -136,6 +138,16 @@ expect()->extend(
 );
 
 expect()->extend(
+    'toSendQueryRequest',
+    function () {
+        expect(getRequestType(getRequestClass($this->value)))
+            ->toEqual(Method::QUERY->name);
+
+        return $this;
+    }
+);
+
+expect()->extend(
     'toHaveJsonBody',
     fn (): ArchExpectation => $this->toImplement(HasBody::class)
         ->toUse(HasJsonBody::class)
@@ -179,4 +191,25 @@ expect()->extend(
 expect()->extend(
     'toHaveDefaultBody',
     fn (): ArchExpectation => $this->toHaveMethod('defaultBody')
+);
+
+expect()->extend(
+    'toBeSoloRequest',
+    fn (): ArchExpectation => $this->toExtend(SoloRequest::class)
+);
+
+expect()->extend(
+    'toHaveEndpoint',
+    fn (): ArchExpectation => $this->toHaveMethod('resolveEndpoint')
+);
+
+expect()->extend(
+    'toCreateDtoFromResponse',
+    function (): Expectation {
+        $class = lawmanExpectationClassName($this->value);
+
+        expect(lawmanMethodIsDeclaredOn($class, 'createDtoFromResponse'))->toBeTrue();
+
+        return $this;
+    }
 );

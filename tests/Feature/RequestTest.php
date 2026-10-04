@@ -9,8 +9,11 @@ use Tests\Fixtures\Arch\Requests\OptionsRequest;
 use Tests\Fixtures\Arch\Requests\PatchRequest;
 use Tests\Fixtures\Arch\Requests\PostRequest;
 use Tests\Fixtures\Arch\Requests\PutRequest;
+use Tests\Fixtures\Arch\Requests\QueryRequest;
 use Tests\Fixtures\Arch\Requests\TraceRequest;
 use Tests\Fixtures\Arch\ToBeSaloonRequest\ToBeSaloonRequest;
+use Tests\Fixtures\Arch\ToBeSoloRequest\ToBeSoloRequest;
+use Tests\Fixtures\Arch\ToCreateDtoFromResponse\ToCreateDtoFromResponse;
 use Tests\Fixtures\Arch\ToHaveDefaultBody\ToHaveDefaultBody;
 use Tests\Fixtures\Arch\ToHaveFormBody\ToHaveFormBody;
 use Tests\Fixtures\Arch\ToHaveJsonBody\ToHaveJsonBody;
@@ -69,6 +72,11 @@ it('checks that a request sends a trace request', function (): void {
         ->toSendTraceRequest();
 });
 
+it('checks that a request sends a query request', function (): void {
+    expect(QueryRequest::class)
+        ->toSendQueryRequest();
+});
+
 it('checks that a request has a json body', function (): void {
     expect(ToHaveJsonBody::class)
         ->toHaveJsonBody();
@@ -107,4 +115,19 @@ it('checks that a request has a default query', function (): void {
 it('checks that a request has a default body', function (): void {
     expect(ToHaveDefaultBody::class)
         ->toHaveDefaultBody();
+});
+
+it('checks that a class is a solo request', function (): void {
+    expect(ToBeSoloRequest::class)
+        ->toBeSoloRequest();
+});
+
+it('checks that a request has an endpoint', function (): void {
+    expect(ToBeSaloonRequest::class)
+        ->toHaveEndpoint();
+});
+
+it('checks that a request creates a dto from the response', function (): void {
+    expect(ToCreateDtoFromResponse::class)
+        ->toCreateDtoFromResponse();
 });
