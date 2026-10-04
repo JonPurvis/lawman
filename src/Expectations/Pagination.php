@@ -20,12 +20,15 @@ function lawmanExpectationClassName(mixed $value): string
     if (! is_string($value)) {
         throw new InvalidArgumentException('Expectation value must be a class name string.');
     }
+
     if (class_exists($value)) {
         return $value;
     }
+
     if (interface_exists($value)) {
         return $value;
     }
+
     throw new InvalidArgumentException('Expectation value must be an existing class or interface.');
 }
 

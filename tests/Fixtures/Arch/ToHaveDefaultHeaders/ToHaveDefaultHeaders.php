@@ -13,7 +13,7 @@ class ToHaveDefaultHeaders extends Connector
         return '';
     }
 
-    public function defaultHeaders(): array
+    protected function defaultHeaders(): array
     {
         return [];
     }

@@ -1,15 +1,17 @@
-<img src="art/banner.png">
+<p align="center">
+    <img src="art/banner.png" alt="Lawman">
+    <p align="center">
+        <a href="https://github.com/JonPurvis/lawman/actions"><img alt="GitHub Workflow Status (master)" src="https://github.com/JonPurvis/lawman/actions/workflows/tests.yml/badge.svg"></a>
+        <a href="https://packagist.org/packages/jonpurvis/lawman"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/jonpurvis/lawman"></a>
+        <a href="https://packagist.org/packages/jonpurvis/lawman"><img alt="Latest Version" src="https://img.shields.io/packagist/v/jonpurvis/lawman"></a>
+        <a href="https://packagist.org/packages/jonpurvis/lawman"><img alt="License" src="https://img.shields.io/packagist/l/jonpurvis/lawman"></a>
+    </p>
+</p>
 
+------
 # Lawman - Your Architectural Enforcer for SaloonPHP
 
-A PestPHP Plugin for SaloonPHP that helps you enforce architectural rules with your API integrations. 
-
-[![Tests](https://github.com/JonPurvis/lawman/actions/workflows/tests.yml/badge.svg)](https://github.com/JonPurvis/lawman/actions/workflows/tests.yml)
-![GitHub last commit](https://img.shields.io/github/last-commit/jonpurvis/lawman)
-![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/jonpurvis/lawman/php)
-![GitHub issues](https://img.shields.io/github/issues/jonpurvis/lawman)
-![GitHub](https://img.shields.io/github/license/jonpurvis/lawman)
-![Packagist Downloads](https://img.shields.io/packagist/dt/jonpurvis/lawman)
+A PestPHP Plugin for SaloonPHP that helps you enforce architectural rules with your API integrations.
 
 ## Introduction
 Lawman is a PestPHP Plugin for SaloonPHP which allows you to easily write architecture tests for your API integrations
@@ -130,9 +132,10 @@ includes:
 ```
 
 ## Contributing
-Contributions to the package are more than welcome so if you think of an Expectation you'd like to
-see, feel free to submit a Pull Request or Open an Issue. If you do submit a Pull Request, please
-make sure you add a new Fixture and test for your Expectation(s).
+
+Contributions to the package are more than welcome - open an Issue or submit a Pull Request. Please see [CONTRIBUTING.md](CONTRIBUTING.md). If you add an Expectation, include a new Fixture and a test for it.
+
+To report a security vulnerability, please see [SECURITY.md](SECURITY.md).
 
 ## Useful Links
 

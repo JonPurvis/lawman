@@ -12,6 +12,12 @@
         "saloon"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Jon Purvis",
+            "homepage": "https://jonathanpurvis.co.uk"
+        }
+    ],
     "require": {
         "php": "^8.3",
         "pestphp/pest": "^4.0|^5.0",
@@ -34,12 +40,15 @@
         }
     },
     "require-dev": {
-        "larastan/larastan": "^2.9||^3.0",
-        "pestphp/pest-dev-tools": "^4.0|^5.0",
+        "laravel/pint": "^1.29",
+        "pestphp/pest-plugin-type-coverage": "^4.0 || ^5.0",
+        "phpstan/phpstan": "^2.2",
+        "rector/rector": "^2.5",
         "saloonphp/cache-plugin": "^3.1",
         "saloonphp/pagination-plugin": "^2.0",
         "saloonphp/rate-limit-plugin": "^2.5",
-        "saloonphp/saloon": "^4.0"
+        "saloonphp/saloon": "^4.0",
+        "symfony/var-dumper": "^7.0 || ^8.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -51,16 +60,23 @@
         }
     },
     "scripts": {
-        "refacto": "rector",
-        "lint": "pint",
-        "test:refacto": "rector --dry-run",
-        "test:lint": "pint --test",
-        "test:types": "phpstan analyse --ansi",
-        "test:unit": "pest --colors=always",
+        "lint": [
+            "pint --parallel",
+            "rector"
+        ],
+        "refactor": "rector",
+        "test:type-coverage": "pest --type-coverage --min=100",
+        "test:lint": [
+            "pint --parallel --test",
+            "rector --dry-run"
+        ],
+        "test:refactor": "rector --dry-run",
+        "test:unit": "pest --parallel --coverage",
+        "test:types": "phpstan",
         "test": [
-            "@test:refacto",
             "@test:lint",
             "@test:types",
+            "@test:type-coverage",
             "@test:unit"
         ]
     }
